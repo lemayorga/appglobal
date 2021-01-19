@@ -13,10 +13,10 @@
           - [ ] Sql
       - [ ] Seeds
   - [x] Servicio.Logica
-   - [ ] Interfaces
-   - [ ] Services
+      - [ ] Interfaces
+      - [ ] Services
   - [x] Servicio.Core
-   - [ ] Controllers
+      - [ ] Controllers
 - [ ] FrontBase
 
 ### Herramientas Backend

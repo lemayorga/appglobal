@@ -1,0 +1,2 @@
+# appglobal
+Aplicacion API global

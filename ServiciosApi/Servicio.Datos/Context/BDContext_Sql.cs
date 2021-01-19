@@ -1,0 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using Servicio.Datos.Seeds;
+using Servicio.Entidad.Models.Comun;
+
+namespace Servicio.Datos.Context
+{
+    public partial class BDContext_Sql : DbContext
+    {
+        private readonly string _connectionString;
+        public BDContext_Sql(DbContextOptions<BDContext_Sql> options): base(options) {}
+        public BDContext_Sql(string connectionString) : base(GetOptions(connectionString)) =>  
+                _connectionString = connectionString; 
+        private static DbContextOptions GetOptions(string connectionString) => 
+                SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
+        protected override void OnModelCreating(ModelBuilder modelBuilder) =>
+                SeedInitialize.Seed(modelBuilder);   
+        public DbSet<Institucion> Instituciones { get; set; }
+    }
+}

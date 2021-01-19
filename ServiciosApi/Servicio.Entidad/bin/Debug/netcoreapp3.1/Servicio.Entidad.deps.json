@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Servicio.Entidad/1.0.0": {
+        "runtime": {
+          "Servicio.Entidad.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Servicio.Entidad/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

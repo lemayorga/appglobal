@@ -1,0 +1,86 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Servicio.Entidad/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Servicio.Entidad.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Servicio.Entidad.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Servicio.Entidad/1.0.0": {
+      "type": "project",
+      "path": "../Servicio.Entidad/Servicio.Entidad.csproj",
+      "msbuildProject": "../Servicio.Entidad/Servicio.Entidad.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "Servicio.Entidad >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\juan\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj",
+      "projectName": "Servicio.Logica",
+      "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj",
+      "packagesPath": "C:\\Users\\juan\\.nuget\\packages\\",
+      "outputPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {
+            "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
+              "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Servicio.Datos.Context;
 using Microsoft.EntityFrameworkCore;
+using Servicio.Logica.Interfaces.Seguridad;
+using Servicio.Logica.Services.Seguridad;
 
 namespace Servicio.Core
 {
@@ -31,13 +33,15 @@ namespace Servicio.Core
             
             services.AddDbContext<BDContext_Npgsql>(options => 
                                   options.UseNpgsql(Configuration.GetConnectionString("Npgsql_BDConexion")
-                                  //,options => options.MigrationsAssembly("Servicio.Core")
             ));   
 
             services.AddDbContext<BDContext_Sql>(options => 
                                   options.UseSqlServer(Configuration.GetConnectionString("Sql_BDConexion")
-                                  //,options => options.MigrationsAssembly("Servicio.Core")
-            ));        
+            ));      
+
+            
+            services.AddScoped<ISeguridadServices, SeguridadServices>();
+  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Servicio.Datos.Context;
@@ -9,9 +10,10 @@ using Servicio.Datos.Context;
 namespace Servicio.Datos.Migrations.Npgsql
 {
     [DbContext(typeof(BDContext_Npgsql))]
-    partial class BDContext_NpgsqlModelSnapshot : ModelSnapshot
+    [Migration("20210119100006_SeguridadEntidades")]
+    partial class SeguridadEntidades
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

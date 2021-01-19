@@ -9,7 +9,7 @@ using Servicio.Datos.Context;
 namespace Servicio.Datos.Migrations.Npgsql
 {
     [DbContext(typeof(BDContext_Npgsql))]
-    [Migration("20210119072448_InicialMigracion")]
+    [Migration("20210119083621_InicialMigracion")]
     partial class InicialMigracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,44 @@ namespace Servicio.Datos.Migrations.Npgsql
                     b.HasKey("cod_institucion");
 
                     b.ToTable("Institucion", "Comun");
+                });
+
+            modelBuilder.Entity("Servicio.Entidad.Models.Comun.Sucursales", b =>
+                {
+                    b.Property<int>("cod_sucursal")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<int>("cod_institucion")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("sucursal")
+                        .IsRequired()
+                        .HasMaxLength(550)
+                        .HasColumnType("character varying(550)");
+
+                    b.HasKey("cod_sucursal");
+
+                    b.HasIndex("cod_institucion");
+
+                    b.ToTable("Sucursales", "Comun");
+                });
+
+            modelBuilder.Entity("Servicio.Entidad.Models.Comun.Sucursales", b =>
+                {
+                    b.HasOne("Servicio.Entidad.Models.Comun.Institucion", "Institucion")
+                        .WithMany("Surcursales")
+                        .HasForeignKey("cod_institucion")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Institucion");
+                });
+
+            modelBuilder.Entity("Servicio.Entidad.Models.Comun.Institucion", b =>
+                {
+                    b.Navigation("Surcursales");
                 });
 #pragma warning restore 612, 618
         }

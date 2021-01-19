@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Servicio.Entidad.Models.Seguridad;
 
 namespace Servicio.Core.Controllers
 {
@@ -26,6 +27,10 @@ namespace Servicio.Core.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            var usuario = new Usuarios();
+            usuario.xcontrasena = "123";
+            var contrasena = usuario.xcontrasena;
+
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

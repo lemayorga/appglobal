@@ -55,8 +55,13 @@ namespace Servicio.Datos.Seeds
             modelBuilder.Entity<Usuarios>(entidad =>
             {
                 entidad.Property(propiedad => propiedad.cod_usuario).IsRequired().UseIdentityColumn();
-                entidad.Property(propiedad => propiedad.xusuario).IsRequired().HasMaxLength(80);
-                 entidad.Property(propiedad => propiedad.xcontrasena).IsRequired();
+                entidad.Property(propiedad => propiedad.xusuario).IsRequired().HasMaxLength(80).IsUnicode();
+                entidad.Property(propiedad => propiedad.xcontrasena).IsRequired();
+                entidad.Property(propiedad => propiedad.nombres).IsRequired().HasMaxLength(100);
+                entidad.Property(propiedad => propiedad.apellidos).IsRequired().HasMaxLength(100);
+                entidad.Property(propiedad => propiedad.correo).IsRequired().HasMaxLength(150);
+                entidad.Property(propiedad => propiedad.esActivo).HasDefaultValue(true);
+                // entidad.Ignore(propiedad => propiedad.apellido);
             }); 
 
             modelBuilder.Entity<RolesPermisos>().ToTable("RolesPermisos","Seguridad")

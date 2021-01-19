@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "ZNzL1OrcqMObj883t4g1vVodQQNrRTU31a77o3zSmeq0BzRYg/03DZ60SuGK7U8sQbSfhZEsOMlt2b6Ffrr0gw==",
+  "dgSpecHash": "+uETK0rfUqwOH6Eh2nHJx4gwjDgl9jIuYnpzTG191+Be7CmrITTI54b4YyGFboF74GB30RglhFao7R+pR3Edeg==",
   "success": true,
   "projectFilePath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\juan\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\juan\\.nuget\\packages\\microsoft.extensions.configuration.binder\\5.0.0\\microsoft.extensions.configuration.binder.5.0.0.nupkg.sha512",
+    "C:\\Users\\juan\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\juan\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
+    "C:\\Users\\juan\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\5.0.0\\microsoft.extensions.options.configurationextensions.5.0.0.nupkg.sha512",
+    "C:\\Users\\juan\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

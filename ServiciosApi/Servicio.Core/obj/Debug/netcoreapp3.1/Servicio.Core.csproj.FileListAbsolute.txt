@@ -146,3 +146,5 @@ F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Core\obj\Debug\net
 F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Core\obj\Debug\netcoreapp3.1\Servicio.Core.dll
 F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Core\obj\Debug\netcoreapp3.1\Servicio.Core.pdb
 F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Core\obj\Debug\netcoreapp3.1\Servicio.Core.genruntimeconfig.cache
+F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Core\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Core\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll

@@ -22,3 +22,5 @@ F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Logica\obj\Debug\n
 F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Logica\obj\Debug\netcoreapp3.1\Servicio.Logica.csproj.CopyComplete
 F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Logica\obj\Debug\netcoreapp3.1\Servicio.Logica.dll
 F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Logica\obj\Debug\netcoreapp3.1\Servicio.Logica.pdb
+F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Logica\bin\Debug\netcoreapp3.1\Servicio.Datos.dll
+F:\cursos_practicas\proyectos\appglobal\ServiciosApi\Servicio.Logica\bin\Debug\netcoreapp3.1\Servicio.Datos.pdb

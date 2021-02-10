@@ -17,13 +17,14 @@ namespace Servicio.Logica.Services.Seguridad
 
         public void AddRol(Roles entidad)
         {
-            _servicesContext.ctx.Roles.AddAsync(entidad);     
+            _servicesContext.ctx.Roles.AddAsync(entidad); 
+            _servicesContext.ctx.SaveChangesAsync();        
         }
 
         public void UpdateRol(Roles entidad)
         {
             _servicesContext.ctx.Entry(entidad).State = EntityState.Modified;
-            _servicesContext.ctx.SaveChanges();
+            _servicesContext.ctx.SaveChangesAsync();    
         }
 
         public bool DeleteRol(int id)
@@ -32,6 +33,7 @@ namespace Servicio.Logica.Services.Seguridad
             if(entidad != null)
             {
                 _servicesContext.ctx.Roles.Remove(entidad);
+                _servicesContext.ctx.SaveChanges();    
                 return true;
             }
             return false;
@@ -48,13 +50,14 @@ namespace Servicio.Logica.Services.Seguridad
 
         public void AddPermiso(Permisos entidad)
         {
-            _servicesContext.ctx.Permisos.AddAsync(entidad);     
+            _servicesContext.ctx.Permisos.AddAsync(entidad);
+            _servicesContext.ctx.SaveChangesAsync();     
         }
 
         public void UpdatePermiso(Permisos entidad)
         {
             _servicesContext.ctx.Entry(entidad).State = EntityState.Modified;
-            _servicesContext.ctx.SaveChanges();
+            _servicesContext.ctx.SaveChangesAsync();
         }
 
         public bool DeletePermiso(int id)
@@ -63,6 +66,7 @@ namespace Servicio.Logica.Services.Seguridad
             if(entidad != null)
             {
                  _servicesContext.ctx.Permisos.Remove(entidad);
+                 _servicesContext.ctx.SaveChanges();     
                 return true;
             }
             return false;
@@ -80,12 +84,13 @@ namespace Servicio.Logica.Services.Seguridad
         public void AddUsuario(Usuarios entidad)
         {
             _servicesContext.ctx.Usuarios.AddAsync(entidad);
+            _servicesContext.ctx.SaveChangesAsync();    
         }
 
         public void UpdateUsuario(Usuarios entidad)
         {
             _servicesContext.ctx.Entry(entidad).State = EntityState.Modified;
-            _servicesContext.ctx.SaveChanges();
+            _servicesContext.ctx.SaveChangesAsync();
         }
 
         public bool DeleteUsuario(int id)
@@ -94,6 +99,7 @@ namespace Servicio.Logica.Services.Seguridad
             if(entidad != null)
             {
                 _servicesContext.ctx.Usuarios.Remove(entidad);
+                _servicesContext.ctx.SaveChanges(); 
                 return true;
             }
             return false;

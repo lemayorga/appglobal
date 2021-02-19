@@ -2,6 +2,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Servicio.Entidad\Servicio.Entidad.csproj" />
+    <ProjectReference Include="..\Servicio.Datos\Servicio.Datos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
   </ItemGroup>
 
   <PropertyGroup>

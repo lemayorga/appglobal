@@ -141,6 +141,10 @@
               "target": "Package",
               "version": "[2.0.3, )"
             },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[5.0.1, )"
@@ -246,6 +250,9 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+              "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj": {
+                "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj"
+              },
               "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
                 "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj"
               }
@@ -260,6 +267,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

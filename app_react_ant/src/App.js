@@ -1,3 +1,7 @@
+
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './routers/index';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -20,20 +24,9 @@ import CustomTheme from './layouts/CustomTheme';
 
 function App() {
   return (
-
-    <div className="wrapper">
-    <Header />
-    <SideBar />
-    <div className="main-panel">
-      <div className="content">
-        <div className="page-inner">
-          {/* {children} */}
-        </div>		
-      </div>
-      <Footer />
-    </div>
-    <CustomTheme />
-  </div>
+    <BrowserRouter>
+		 <AppRouter />
+    </BrowserRouter>  
   );
 }
 

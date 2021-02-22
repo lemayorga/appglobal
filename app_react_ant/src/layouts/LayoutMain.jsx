@@ -4,10 +4,10 @@ import React from 'react';
 // import '../assets/js/atlantis.js';
 // import '../assets/js/setting_demo.js';
 
-import Footer from './Footer';
-import Header from './Header';
-import SideBar from './SideBar';
-import CustomTheme from './CustomTheme';
+import Footer from '../layouts/Footer';
+import Header from '../layouts/Header';
+import SideBar from '../layouts/SideBar';
+import CustomTheme from '../layouts/CustomTheme';
 
 const LayoutMain = ({ children }) =>{
 	return(

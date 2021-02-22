@@ -6,7 +6,7 @@ import "./assets/css/atlantis.min.css";
 import './assets/css/demo.css';
 import './assets/css/customer.css';
 
-// import 'bootstrap';
+import 'bootstrap';
 import './assets/css/fonts.css';
 // import './assets/js/atlantis.js';
 // import './assets/js/setting_demo.js';
@@ -16,7 +16,7 @@ import './assets/css/fonts.css';
 import Footer from './layouts/Footer';
 import Header from './layouts/Header';
 import SideBar from './layouts/SideBar';
-// import CustomTheme from './CustomTheme';
+import CustomTheme from './layouts/CustomTheme';
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
       </div>
       <Footer />
     </div>
-    {/* <CustomTheme /> */}
+    <CustomTheme />
   </div>
   );
 }

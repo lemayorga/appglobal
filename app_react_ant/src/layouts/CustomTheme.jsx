@@ -1,6 +1,5 @@
-import { Slider } from 'antd';
-import React,{ useState } from 'react';
 
+import React,{ useState } from 'react';
 
 export default function CustomTheme(){
 	const [custom_open, setCustom_open] = useState(0);

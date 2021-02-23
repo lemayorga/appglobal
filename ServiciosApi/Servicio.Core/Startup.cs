@@ -19,6 +19,8 @@ namespace Servicio.Core
 {
     public class Startup
     {
+		readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+		  
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +33,13 @@ namespace Servicio.Core
         {
             services.AddControllers();
             
+			services.AddCors(options => options.AddPolicy(MyAllowSpecificOrigins, builder =>
+            {
+                builder.AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .WithOrigins("http://localhost:3000");
+            }));        
+		
             services.AddDbContext<BDContext_Npgsql>(options => 
                                   options.UseNpgsql(Configuration.GetConnectionString("Npgsql_BDConexion")
             ));   
@@ -47,7 +56,9 @@ namespace Servicio.Core
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+			app.UseCors(MyAllowSpecificOrigins);
+            
+			if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }

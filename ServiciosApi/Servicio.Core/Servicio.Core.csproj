@@ -1,18 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<ItemGroup>
-		<ProjectReference Include="..\Servicio.Entidad\Servicio.Entidad.csproj"/>
-		<ProjectReference Include="..\Servicio.Logica\Servicio.Logica.csproj"/>
-		<ProjectReference Include="..\Servicio.Datos\Servicio.Datos.csproj"/>
+		<ProjectReference Include="..\Servicio.Entidad\Servicio.Entidad.csproj" />
+		<ProjectReference Include="..\Servicio.Logica\Servicio.Logica.csproj" />
+		<ProjectReference Include="..\Servicio.Datos\Servicio.Datos.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10"/>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3"/>
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
 	</ItemGroup>
 	<PropertyGroup>
 		<!-- <TargetFramework>netcoreapp3.1</TargetFramework> -->

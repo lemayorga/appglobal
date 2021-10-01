@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Servicio.Core/bin/Debug/netcoreapp3.1/Servicio.Core.dll",
+            "program": "${workspaceFolder}/Servicio.Core/bin/Debug/net5.0/Servicio.Core.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Servicio.Core",
             "stopAtEntry": false,

@@ -6924,11 +6924,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\servicio.core\\Servicio.Core.csproj",
+      "projectUniqueName": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj",
       "projectName": "Servicio.Core",
-      "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\servicio.core\\Servicio.Core.csproj",
+      "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj",
       "packagesPath": "C:\\Users\\juan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\servicio.core\\obj\\",
+      "outputPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config",

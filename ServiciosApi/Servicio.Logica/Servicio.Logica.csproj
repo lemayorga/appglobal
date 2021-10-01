@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-		<ProjectReference Include="..\Servicio.Entidad\Servicio.Entidad.csproj"/>
-		<ProjectReference Include="..\Servicio.Datos\Servicio.Datos.csproj"/>
+		<ProjectReference Include="..\Servicio.Entidad\Servicio.Entidad.csproj" />
+		<ProjectReference Include="..\Servicio.Datos\Servicio.Datos.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10"/>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
 	</ItemGroup>
 	<PropertyGroup>
 		<!-- <TargetFramework>netcoreapp3.1</TargetFramework> -->

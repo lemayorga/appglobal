@@ -45,7 +45,8 @@ namespace Servicio.Core
                         options.UseNpgsql(Configuration.GetConnectionString("Npgsql_BDConexion")));  
                 break;
             }
-
+            
+            services.AddAutoMapper(typeof(Startup));
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
 

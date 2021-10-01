@@ -9,18 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Servicio.Datos.Context;
 using Microsoft.EntityFrameworkCore;
-using Servicio.Logica.Interfaces.Seguridad;
-using Servicio.Logica.Services.Seguridad;
+using Servicio.Datos.Repository;
+using Servicio.Datos.Shared;
+using System.Reflection;
 
 namespace Servicio.Core
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        {
+        {            
             Configuration = configuration;
         }
 
@@ -29,19 +29,26 @@ namespace Servicio.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+   
             services.AddControllers();
-            
-            services.AddDbContext<BDContext_Npgsql>(options => 
-                                  options.UseNpgsql(Configuration.GetConnectionString("Npgsql_BDConexion")
-            ));   
 
-            services.AddDbContext<BDContext_Sql>(options => 
-                                  options.UseSqlServer(Configuration.GetConnectionString("Sql_BDConexion")
-            ));      
+            switch (OptionsBuilder.myGestorBD)
+            {
+                case  EnumGestor.SqlServer:
+                      services.AddDbContext<ApplicationDbContext>(options => 
+                             options.UseSqlServer(Configuration.GetConnectionString("Sql_BDConexion") ));  
+                break;
+                case  EnumGestor.PostgreSql:
+                 services.AddDbContext<ApplicationDbContext>(options => 
+                        options.UseNpgsql(Configuration.GetConnectionString("Npgsql_BDConexion")));  
+                break;
+            }
 
-            
-            services.AddScoped<ISeguridadServices, SeguridadServices>();
-  
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+
+           // https://stackoverflow.com/questions/33566075/generic-repository-in-asp-net-core-without-having-a-separate-addscoped-line-per
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +67,11 @@ namespace Servicio.Core
 
             app.UseEndpoints(endpoints =>
             {
+                // endpoints.MapAreaControllerRoute(
+                //     name: "areas",
+                //     "areas",
+                //     pattern: "{area}/{controller=Default}/{action=Index}/{id?}"
+                // );
                 endpoints.MapControllers();
             });
         }

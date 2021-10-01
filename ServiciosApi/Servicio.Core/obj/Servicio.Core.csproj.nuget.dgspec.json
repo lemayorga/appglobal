@@ -1,38 +1,42 @@
 {
   "format": 1,
   "restore": {
-    "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj": {}
+    "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj": {}
   },
   "projects": {
-    "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj": {
+    "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj",
+        "projectUniqueName": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj",
         "projectName": "Servicio.Core",
-        "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj",
+        "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Core\\Servicio.Core.csproj",
         "packagesPath": "C:\\Users\\juan\\.nuget\\packages\\",
-        "outputPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Core\\obj\\",
+        "outputPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\juan\\Documents\\trabajo\\fuentes\\ifam\\web\\NugetRepositorio\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
-              "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj": {
-                "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj"
+              "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj": {
+                "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj"
               },
-              "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
-                "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj"
+              "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
+                "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj"
               },
-              "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj": {
-                "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj"
+              "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj": {
+                "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj"
               }
             }
           }
@@ -44,21 +48,22 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools.DotNet": {
               "target": "Package",
@@ -66,7 +71,7 @@
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.10, )"
             }
           },
           "imports": [
@@ -87,33 +92,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj": {
+    "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj",
+        "projectUniqueName": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj",
         "projectName": "Servicio.Datos",
-        "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj",
+        "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj",
         "packagesPath": "C:\\Users\\juan\\.nuget\\packages\\",
-        "outputPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\obj\\",
+        "outputPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Datos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\juan\\Documents\\trabajo\\fuentes\\ifam\\web\\NugetRepositorio\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
-              "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
-                "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj"
+              "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
+                "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj"
               }
             }
           }
@@ -125,17 +134,18 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools.DotNet": {
               "target": "Package",
@@ -147,7 +157,7 @@
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.10, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
               "target": "Package",
@@ -169,30 +179,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
+    "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj",
+        "projectUniqueName": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj",
         "projectName": "Servicio.Entidad",
-        "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj",
+        "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj",
         "packagesPath": "C:\\Users\\juan\\.nuget\\packages\\",
-        "outputPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\obj\\",
+        "outputPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\juan\\Documents\\trabajo\\fuentes\\ifam\\web\\NugetRepositorio\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -203,7 +217,8 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.Extensions.Options.ConfigurationExtensions": {
               "target": "Package",
@@ -225,36 +240,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj": {
+    "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj",
+        "projectUniqueName": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj",
         "projectName": "Servicio.Logica",
-        "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj",
+        "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Logica\\Servicio.Logica.csproj",
         "packagesPath": "C:\\Users\\juan\\.nuget\\packages\\",
-        "outputPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Logica\\obj\\",
+        "outputPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Logica\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\juan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\juan\\Documents\\trabajo\\fuentes\\ifam\\web\\NugetRepositorio\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
-              "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj": {
-                "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj"
+              "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj": {
+                "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Datos\\Servicio.Datos.csproj"
               },
-              "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
-                "projectPath": "F:\\cursos_practicas\\proyectos\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj"
+              "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj": {
+                "projectPath": "C:\\Users\\juan\\Documents\\personal\\estudio\\practica\\appglobal\\ServiciosApi\\Servicio.Entidad\\Servicio.Entidad.csproj"
               }
             }
           }
@@ -266,11 +285,12 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[5.0.10, )"
             }
           },
           "imports": [
@@ -288,7 +308,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

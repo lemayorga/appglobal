@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Servicio.Entidad.Helpers;
+using Servicio.Entidad.interfaces;
+
 namespace Servicio.Entidad.Models.Seguridad
 {
-    public class Usuarios 
+    public class Usuarios   : IEntity
     {
         public Usuarios() => _passwordHasher = new PasswordHasher();
 
@@ -17,7 +20,7 @@ namespace Servicio.Entidad.Models.Seguridad
 
         #endregion
 
-        public int cod_usuario { get; set; }
+        public Guid cod_usuario { get; set; }
         public string xusuario { get; set; }
         public string nombres { get; set; }
         public string apellidos { get; set; }

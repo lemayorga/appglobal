@@ -2,31 +2,29 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Servicio.Datos.Context;
 
 namespace Servicio.Datos.Migrations.Npgsql
 {
-    [DbContext(typeof(BDContext_Npgsql))]
-    [Migration("20210119100006_SeguridadEntidades")]
-    partial class SeguridadEntidades
+    [DbContext(typeof(ApplicationDbContext))]
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityByDefaultColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.10")
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("Servicio.Entidad.Models.Comun.Institucion", b =>
                 {
                     b.Property<int>("cod_institucion")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("nombre")
                         .IsRequired()
@@ -48,7 +46,7 @@ namespace Servicio.Datos.Migrations.Npgsql
                     b.Property<int>("cod_sucursal")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("cod_institucion")
                         .HasColumnType("integer");
@@ -70,7 +68,7 @@ namespace Servicio.Datos.Migrations.Npgsql
                     b.Property<int>("cod_permiso")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<char>("cod_estado")
                         .ValueGeneratedOnAdd()
@@ -107,11 +105,12 @@ namespace Servicio.Datos.Migrations.Npgsql
                     b.Property<int>("cod_rol")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("nombre_rol")
+                    b.Property<string>("nombre")
+                        .IsRequired()
                         .HasMaxLength(250)
-                        .HasColumnType("integer");
+                        .HasColumnType("character varying(250)");
 
                     b.HasKey("cod_rol");
 
@@ -123,7 +122,7 @@ namespace Servicio.Datos.Migrations.Npgsql
                     b.Property<int>("cod_rol_permiso")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("cod_rol")
                         .HasColumnType("integer");
@@ -142,10 +141,29 @@ namespace Servicio.Datos.Migrations.Npgsql
 
             modelBuilder.Entity("Servicio.Entidad.Models.Seguridad.Usuarios", b =>
                 {
-                    b.Property<int>("cod_usuario")
+                    b.Property<Guid>("cod_usuario")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("apellidos")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("correo")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<bool>("esActivo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("nombres")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("xcontrasena")
                         .IsRequired()
@@ -154,6 +172,7 @@ namespace Servicio.Datos.Migrations.Npgsql
                     b.Property<string>("xusuario")
                         .IsRequired()
                         .HasMaxLength(80)
+                        .IsUnicode(true)
                         .HasColumnType("character varying(80)");
 
                     b.HasKey("cod_usuario");
@@ -166,13 +185,13 @@ namespace Servicio.Datos.Migrations.Npgsql
                     b.Property<int>("cod_usuario_rol")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("cod_rol")
                         .HasColumnType("integer");
 
-                    b.Property<int>("cod_usuario")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("cod_usuario")
+                        .HasColumnType("uuid");
 
                     b.HasKey("cod_usuario_rol", "cod_rol", "cod_usuario");
 

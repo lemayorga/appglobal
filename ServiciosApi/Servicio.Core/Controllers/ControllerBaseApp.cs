@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -18,13 +19,19 @@ namespace Servicio.Core.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public virtual async Task<IActionResult> PostCreate([FromBody] T record)
         {
             var resultado = await repo.AddEntityAsync(record);
             return Ok(resultado);
         }
 
-       [HttpDelete("{id}")]
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public virtual async Task<IActionResult> Delete(int id)
         {
             T entityToDelete = await repo.FindAsync(id);
@@ -41,6 +48,9 @@ namespace Servicio.Core.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public virtual async Task<IActionResult> GetFind(int id)
         {
             T record = await repo.FindAsync(id);
@@ -50,8 +60,10 @@ namespace Servicio.Core.Controllers
             return Ok(record);
         }
 
-        [HttpGet]
-        [Route("")]
+        [HttpGet()]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public virtual async Task<IActionResult> Get() 
         {
             var resultado = await repo.GetAsync();
@@ -59,6 +71,9 @@ namespace Servicio.Core.Controllers
         }
 
         [HttpPut("")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public virtual async Task<IActionResult> PutUpdate([FromBody] T record)
         {
             var resultado =  await repo.UpdateEntityAsync(record);

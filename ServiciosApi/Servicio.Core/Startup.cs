@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Servicio.Datos.Repository;
 using Servicio.Datos.Shared;
 using System.Reflection;
+using Servicio.Core.Config;
 
 namespace Servicio.Core
 {
@@ -29,8 +30,9 @@ namespace Servicio.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-   
+    
             services.AddControllers();
+            SwaggerConfig.ConfigureServices(services);
 
             switch (OptionsBuilder.myGestorBD)
             {
@@ -58,7 +60,7 @@ namespace Servicio.Core
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            SwaggerConfig.Configure(app, env);
             app.UseHttpsRedirection();
 
             app.UseRouting();

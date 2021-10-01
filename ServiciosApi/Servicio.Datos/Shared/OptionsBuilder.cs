@@ -1,7 +1,6 @@
+using System;
 using System.IO;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Servicio.Datos.Context;
 
 namespace Servicio.Datos.Shared
 {
@@ -11,9 +10,16 @@ namespace Servicio.Datos.Shared
         {
             get
             {
+               // Variable de entorno de ejecucion
+               string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
                 var configurationBuilder = new ConfigurationBuilder();
                 // var path = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
                 // configurationBuilder.AddJsonFile(path, false);
+                configurationBuilder
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true);
                 var root = configurationBuilder.Build();
 
                 return root;

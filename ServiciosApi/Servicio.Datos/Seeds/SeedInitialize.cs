@@ -1,4 +1,7 @@
+using System;
 using Microsoft.EntityFrameworkCore;
+using Servicio.Datos.Context;
+using Servicio.Datos.Shared;
 using Servicio.Entidad.Models.Comun;
 using Servicio.Entidad.Models.Seguridad;
 
@@ -6,8 +9,30 @@ namespace Servicio.Datos.Seeds
 {
     public static class SeedInitialize
     {
+
         public static void Seed(ModelBuilder modelBuilder)
         {
+            SeedMain(modelBuilder);
+            SeedCustomer(modelBuilder);
+        }
+
+        private static void SeedCustomer(ModelBuilder modelBuilder)
+        {        
+            EnumGestor gestoBaseDatos  = OptionsBuilder.myGestorBD;
+
+            switch (gestoBaseDatos)
+            {
+                case EnumGestor.PostgreSql:
+                    Servicio.Datos.Seeds.Npgsql.SeedInitialize.Seed(modelBuilder);
+                    break;
+                case EnumGestor.SqlServer:
+                    Servicio.Datos.Seeds.SqlServer.SeedInitialize.Seed(modelBuilder);
+                    break;
+            }
+        }
+
+        private static void SeedMain(ModelBuilder modelBuilder)
+        {        
             #region Institucion y Sucursales
 
             modelBuilder.Entity<Institucion>().ToTable("Institucion","Comun").HasKey(entidad => entidad.cod_institucion);
@@ -25,9 +50,9 @@ namespace Servicio.Datos.Seeds
             });             
               
             modelBuilder.Entity<Sucursales>()
-            .HasOne<Institucion>(s => s.Institucion)
-            .WithMany(g => g.Surcursales)
-            .HasForeignKey(s => s.cod_institucion);
+                .HasOne<Institucion>(s => s.Institucion)
+                .WithMany(g => g.Surcursales)
+                .HasForeignKey(s => s.cod_institucion);
 
             #endregion
 
@@ -49,12 +74,13 @@ namespace Servicio.Datos.Seeds
             modelBuilder.Entity<Roles>(entidad =>
             {
                 entidad.Property(propiedad => propiedad.cod_rol).IsRequired().UseIdentityColumn();
-                entidad.Property(propiedad => propiedad.nombre_rol).IsRequired().HasMaxLength(250);
+                entidad.Property(propiedad => propiedad.nombre).IsRequired().HasMaxLength(250);
             }); 
             
             modelBuilder.Entity<Usuarios>(entidad =>
             {
-                entidad.Property(propiedad => propiedad.cod_usuario).IsRequired().UseIdentityColumn();
+                // entidad.Property(propiedad => propiedad.cod_usuario).IsRequired().UseIdentityColumn();
+                entidad.Property(propiedad => propiedad.cod_usuario).IsRequired();
                 entidad.Property(propiedad => propiedad.xusuario).IsRequired().HasMaxLength(80).IsUnicode();
                 entidad.Property(propiedad => propiedad.xcontrasena).IsRequired();
                 entidad.Property(propiedad => propiedad.nombres).IsRequired().HasMaxLength(100);
@@ -92,4 +118,3 @@ namespace Servicio.Datos.Seeds
         }
     }
 }
-

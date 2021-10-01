@@ -5,27 +5,62 @@ using Servicio.Datos.Context;
 
 namespace Servicio.Datos.Shared
 {
-    public class ServicesContext
-    {
-        public BDContext_Npgsql ctx;
-        private EnumGestor gestoBaseDatos { get => EnumGestor.PostgreSql;  }
-        public static BDContext_Npgsql _context { get => new ServicesContext().ctx;   }
-        public ServicesContext()
-        {
-            this.ctx = new BDContext_Npgsql(ObtenerConexionString());
-        }
-        private string ObtenerConexionString()
-        {
-            var configurationBuilder = new ConfigurationBuilder();
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
-            configurationBuilder.AddJsonFile(path, false);
+    // public class ServicesContext
+    // {
+    //     public DbContextBase ctx;
+        
+    //     private EnumGestor gestorBaseDatos { get =>  ((EnumGestor) int.Parse(configurationBuilder["MyGestorBD"].ToString())); }
 
-            string gestor_base_datos = gestoBaseDatos == EnumGestor.PostgreSql ? "Npgsql"
-                             : gestoBaseDatos == EnumGestor.SqlServer ? "Sql" 
-                             : string.Empty;
-            var root = configurationBuilder.Build();
-            return root[$"ConnectionStrings:{gestor_base_datos}_BDConexion"];
-        }
+    //     public static DbContextBase _context { get => new ServicesContext().ctx;   }
 
-    }
+    //     public ServicesContext()
+    //     {
+    //         this.ctx = new DbContextBase();
+    //     }
+
+        // public string ObtenerConexionString()
+        // {
+        //     string gestorconexion = gestorBaseDatos == EnumGestor.SqlServer ? "Sql" 
+        //                       : gestorBaseDatos == EnumGestor.PostgreSql ?  "Npgsql" : "";
+                              
+        //     return configurationBuilder[$"ConnectionStrings:{gestorconexion}_BDConexion"];
+        // }
+
+        // public IConfigurationRoot configurationBuilder
+        // {
+        //     get
+        //     {
+        //         var configurationBuilder = new ConfigurationBuilder();
+        //         var path = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
+        //         configurationBuilder.AddJsonFile(path, false);
+
+        //         var root = configurationBuilder.Build();
+
+        //         return root;
+        //     }
+        // }
+
+
+        // public DbContextOptionsBuilder _dbContextOptionsBuilder
+        // {
+        //     get
+        //     {
+        //                 var optionsBuilder = new DbContextOptionsBuilder();
+        //         string connectionString = string.Empty;
+        //         if ((EnumGestor) int.Parse(configurationBuilder["MyGestorBD"].ToString()) == EnumGestor.SqlServer)
+        //         {
+        //                 connectionString = configurationBuilder.GetConnectionString("Sql_BDConexion");
+        //                 optionsBuilder.UseSqlServer(connectionString);
+
+        //         }
+        //         else  if ((EnumGestor) int.Parse(configurationBuilder["MyGestorBD"].ToString()) == EnumGestor.PostgreSql)
+        //         {
+        //                 connectionString = configurationBuilder.GetConnectionString("Npgsql_BDConexion");
+        //                 optionsBuilder.UseNpgsql(connectionString);
+        //         }
+
+        //           return optionsBuilder;
+        //     }
+        // }
+    // }
 }

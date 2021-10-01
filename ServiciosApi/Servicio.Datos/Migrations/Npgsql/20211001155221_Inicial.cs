@@ -1,14 +1,33 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Servicio.Datos.Migrations.Npgsql
 {
-    public partial class SeguridadEntidades : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
+                name: "Comun");
+
+            migrationBuilder.EnsureSchema(
                 name: "Seguridad");
+
+            migrationBuilder.CreateTable(
+                name: "Institucion",
+                schema: "Comun",
+                columns: table => new
+                {
+                    cod_institucion = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nombre = table.Column<string>(type: "character varying(550)", maxLength: 550, nullable: false),
+                    siglas = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Institucion", x => x.cod_institucion);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Permisos",
@@ -36,7 +55,7 @@ namespace Servicio.Datos.Migrations.Npgsql
                 {
                     cod_rol = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    nombre_rol = table.Column<int>(type: "integer", maxLength: 250, nullable: false)
+                    nombre = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,14 +67,39 @@ namespace Servicio.Datos.Migrations.Npgsql
                 schema: "Seguridad",
                 columns: table => new
                 {
-                    cod_usuario = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    cod_usuario = table.Column<Guid>(type: "uuid", nullable: false),
                     xusuario = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: false),
-                    xcontrasena = table.Column<string>(type: "text", nullable: false)
+                    nombres = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    apellidos = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    xcontrasena = table.Column<string>(type: "text", nullable: false),
+                    correo = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
+                    esActivo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.cod_usuario);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sucursales",
+                schema: "Comun",
+                columns: table => new
+                {
+                    cod_sucursal = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    sucursal = table.Column<string>(type: "character varying(550)", maxLength: 550, nullable: false),
+                    cod_institucion = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sucursales", x => x.cod_sucursal);
+                    table.ForeignKey(
+                        name: "FK_Sucursales_Institucion_cod_institucion",
+                        column: x => x.cod_institucion,
+                        principalSchema: "Comun",
+                        principalTable: "Institucion",
+                        principalColumn: "cod_institucion",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,7 +138,7 @@ namespace Servicio.Datos.Migrations.Npgsql
                 {
                     cod_usuario_rol = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    cod_usuario = table.Column<int>(type: "integer", nullable: false),
+                    cod_usuario = table.Column<Guid>(type: "uuid", nullable: false),
                     cod_rol = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -129,6 +173,12 @@ namespace Servicio.Datos.Migrations.Npgsql
                 column: "cod_rol");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sucursales_cod_institucion",
+                schema: "Comun",
+                table: "Sucursales",
+                column: "cod_institucion");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UsuariosRoles_cod_rol",
                 schema: "Seguridad",
                 table: "UsuariosRoles",
@@ -148,12 +198,20 @@ namespace Servicio.Datos.Migrations.Npgsql
                 schema: "Seguridad");
 
             migrationBuilder.DropTable(
+                name: "Sucursales",
+                schema: "Comun");
+
+            migrationBuilder.DropTable(
                 name: "UsuariosRoles",
                 schema: "Seguridad");
 
             migrationBuilder.DropTable(
                 name: "Permisos",
                 schema: "Seguridad");
+
+            migrationBuilder.DropTable(
+                name: "Institucion",
+                schema: "Comun");
 
             migrationBuilder.DropTable(
                 name: "Roles",

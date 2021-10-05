@@ -18,7 +18,6 @@ namespace Servicio.Core.Controllers
     {
         protected  IBaseRepository<TEntity> repo;
         private readonly IMapper mapper;
-        private readonly IConfigurationProvider conf;
         
         public ControllerBaseeAppMapper(IBaseRepository<TEntity> repo,IMapper mapper)
         {

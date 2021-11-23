@@ -25,32 +25,30 @@ namespace Servicio.Core
             Configuration = configuration;
         }
 
+        readonly string CorsPolicy = "_corsPolicy";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-    
-            services.AddControllers();
-            SwaggerConfig.ConfigureServices(services);
-
-            switch (OptionsBuilder.myGestorBD)
+            services.AddCors(o =>
             {
-                case  EnumGestor.SqlServer:
-                      services.AddDbContext<ApplicationDbContext>(options => 
-                             options.UseSqlServer(Configuration.GetConnectionString("Sql_BDConexion") ));  
-                break;
-                case  EnumGestor.PostgreSql:
-                 services.AddDbContext<ApplicationDbContext>(options => 
-                        options.UseNpgsql(Configuration.GetConnectionString("Npgsql_BDConexion")));  
-                break;
-            }
-            
+                o.AddPolicy(name: CorsPolicy, builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod()
+                                    .AllowCredentials()
+                                    .Build();
+                });
+            }); 
+
+            services.AddControllers();  
+            SwaggerConfig.ConfigureServices(services);
+            DatabaseConfig.ConfigureServices(services, Configuration);
+
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-
-
-           // https://stackoverflow.com/questions/33566075/generic-repository-in-asp-net-core-without-having-a-separate-addscoped-line-per
 
         }
 
@@ -61,22 +59,20 @@ namespace Servicio.Core
             {
                 app.UseDeveloperExceptionPage();
             }
+        
             SwaggerConfig.Configure(app, env);
             app.UseHttpsRedirection();
 
+            app.UseCors(CorsPolicy);
+
             app.UseRouting();
-
+            
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
-                // endpoints.MapAreaControllerRoute(
-                //     name: "areas",
-                //     "areas",
-                //     pattern: "{area}/{controller=Default}/{action=Index}/{id?}"
-                // );
                 endpoints.MapControllers();
             });
         }
     }
 }
+

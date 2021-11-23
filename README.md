@@ -27,19 +27,28 @@ Aplicación APi con net5 ,permitiendo conexion a MSSQL o Postgresql
 - Web API. net core 3.1 ;
 - Entity framework Core 3.1
 
-### Comandos de migracion
+Para definir el gestor de base de datos, basta con cambiar el valor de la variable ***MyGestorBD*** en el archivo:  ** appsettings.json**
+
+| Gestor      | Valor |
+| --------- | -----:|
+| MSql Server  | 0 |
+| Postgre Sql     |   1 |
+
+
+### Comandos de migración
+A continuación los comandos para crear una ***nueva migración*** a serian:
 
 - ##### PostgreSQL:
 
-Nueva migracion
+Nueva migración
 > dotnet ef migrations add Inicial --project Servicio.Datos/Servicio.Datos.csproj -s Servicio.Core -c ApplicationDbContext  -o Migrations/Npgsql --verbose
 
 - ##### SQL Server:
 
-Nueva migracion
+Nueva migración
 > dotnet ef migrations add Inicial --project Servicio.Datos/Servicio.Datos.csproj -s Servicio.Core -c ApplicationDbContext  -o Migrations/SQL --verbose
 
-Actualizar base de datos
+**Actualizar la base de datos o ejecutar las migraciones:**
 > dotnet ef database update --project Servicio.Datos/Servicio.Datos.csproj -s Servicio.Core -c ApplicationDbContext --verbose
 
 

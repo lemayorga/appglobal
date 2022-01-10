@@ -15,6 +15,7 @@ using Servicio.Datos.Repository;
 using Servicio.Datos.Shared;
 using System.Reflection;
 using Servicio.Core.Config;
+using System.IO;
 
 namespace Servicio.Core
 {
@@ -23,6 +24,7 @@ namespace Servicio.Core
         public Startup(IConfiguration configuration)
         {            
             Configuration = configuration;
+            Configuration = OptionsBuilder.configurationBuilder;  //ConfigConfiguration();
         }
 
         readonly string CorsPolicy = "_corsPolicy";
@@ -31,11 +33,14 @@ namespace Servicio.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string[] urlOrigins = (Configuration["Origins"] ?? "").Split(new char[]{',',';'});
+            Console.WriteLine($"IP permitidas: {String.Join(",",urlOrigins)}");
+
             services.AddCors(o =>
             {
                 o.AddPolicy(name: CorsPolicy, builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000")
+                    builder.WithOrigins(urlOrigins)
                                     .AllowAnyHeader()
                                     .AllowAnyMethod()
                                     .AllowCredentials()
@@ -73,6 +78,31 @@ namespace Servicio.Core
                 endpoints.MapControllers();
             });
         }
+
+        
+        // IConfigurationRoot ConfigConfiguration()
+        // {
+        //    // Variable de entorno de ejecucion
+        //     string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+        //     string currectDirectory = Directory.GetCurrentDirectory();
+        //     Console.WriteLine(currectDirectory);
+
+        //     if(Directory.Exists($"{currectDirectory}/ServiciosApi/Servicio.Core/"))
+        //         currectDirectory = $"{currectDirectory}/ServiciosApi/Servicio.Core/";
+
+        //     Console.WriteLine(currectDirectory);
+
+        //    // Creando objeto de configuracion para lectura de archivo json
+        //     IConfigurationRoot configuration = new ConfigurationBuilder()
+        //         .SetBasePath(currectDirectory)
+        //         .AddJsonFile("appsettings.json", optional:false, reloadOnChange: true)
+        //         .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+        //         .AddEnvironmentVariables()
+        //         .Build();
+
+        //     return configuration;
+        // }
     }
 }
 

@@ -7,7 +7,7 @@ namespace Servicio.Core.Controllers.seguridad
 {
    [ApiController]
    [Route("api/seguridad/[controller]")]
-   public class UsuarioController : ControllerBaseeApp<Usuarios>
+   public class UsuarioController : ControllerBaseApp<Usuarios>
    {
         public UsuarioController(IBaseRepository<Usuarios> repo) : base(repo)
         {

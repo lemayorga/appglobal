@@ -36,11 +36,6 @@ namespace Servicio.Core.Config
                     throw new InvalidOperationException("Unable to determine tag for endpoint.");
                 });
                 c.DocInclusionPredicate((name, api) => true);
-
-            //     // Set the comments path for the Swagger JSON and UI.
-            //     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            //     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-            //   //  c.IncludeXmlComments(xmlPath);
             });
             
         }

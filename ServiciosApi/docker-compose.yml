@@ -30,8 +30,8 @@ services:
         image: postgres:latest
         environment:
           - POSTGRES_DB=mybd
-          - POSTGRES_USER=admin
-          - POSTGRES_PASSWORD=Admin123
+          - POSTGRES_USER=postgres #admin  # postgres
+          - POSTGRES_PASSWORD=Admin123 #1234
         ports:
         - "5432:5432"
         volumes:

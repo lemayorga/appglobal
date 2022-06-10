@@ -55,6 +55,8 @@ Nueva migración
 - ### Comando para ejecutar proyecto api:   
 > cd .\ServiciosApi\Servicio.Core\
 > dotnet run
+> dotnet run --launch-profile "Servicio.Core"
+> dotnet watch run
 
 Url defecto: https://localhost:5001/home
 Url Swagger: https://localhost:5001/swagger/index.html

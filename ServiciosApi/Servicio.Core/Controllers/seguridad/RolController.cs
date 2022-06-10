@@ -10,7 +10,7 @@ namespace Servicio.Core.Controllers.seguridad
 {
    [ApiController]
    [Route("api/seguridad/[controller]")]
-   public class RolController : ControllerBaseeAppMapper<Roles, RolAddDto, RolUpdateDto, RolGetDto, RolGetDto>
+   public class RolController : ControllerBaseAppMapper<Roles, RolAddDto, RolUpdateDto, RolGetDto, RolGetDto>
    {
         public RolController(IBaseRepository<Roles> repo,IMapper mapper) : base(repo, mapper)
         {

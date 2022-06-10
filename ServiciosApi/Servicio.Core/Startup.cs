@@ -1,7 +1,6 @@
+using System.Collections.Specialized;
+using System.Text;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,9 +12,10 @@ using Servicio.Datos.Context;
 using Microsoft.EntityFrameworkCore;
 using Servicio.Datos.Repository;
 using Servicio.Datos.Shared;
-using System.Reflection;
 using Servicio.Core.Config;
-using System.IO;
+using Servicio.Logica;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Servicio.Core
 {
@@ -33,14 +33,17 @@ namespace Servicio.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string[] urlOrigins = (Configuration["Origins"] ?? "").Split(new char[]{',',';'});
-            Console.WriteLine($"IP permitidas: {String.Join(",",urlOrigins)}");
+            List<string> urlOrigins = ReadCurentsIps(Configuration["Origins"] );
+
+            Console.WriteLine($"*** IP permitidas: {String.Join(",",urlOrigins)}");
+            Console.WriteLine($"*** Url defecto: https://localhost:5001/home");
+            Console.WriteLine($"*** Url Swagger: https://localhost:5001/swagger/index.html");
 
             services.AddCors(o =>
             {
                 o.AddPolicy(name: CorsPolicy, builder =>
                 {
-                    builder.WithOrigins(urlOrigins)
+                    builder.WithOrigins(urlOrigins.ToArray())
                                     .AllowAnyHeader()
                                     .AllowAnyMethod()
                                     .AllowCredentials()
@@ -79,30 +82,32 @@ namespace Servicio.Core
             });
         }
 
-        
-        // IConfigurationRoot ConfigConfiguration()
-        // {
-        //    // Variable de entorno de ejecucion
-        //     string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        private List<string> ReadCurentsIps(string configOrings)
+        {
+            
+            List<string> urlOrigins = (configOrings ?? "").Split(new char[]{',',';'}).ToList();
+            string currentLocalIPs = Utils.GetCurrentLocalIps();
 
-        //     string currectDirectory = Directory.GetCurrentDirectory();
-        //     Console.WriteLine(currectDirectory);
+            if(!string.IsNullOrEmpty(currentLocalIPs) && urlOrigins.Count() > 0)
+            {
+                urlOrigins ??= new List<string>();
+                Uri uri = new Uri(urlOrigins[0]);
 
-        //     if(Directory.Exists($"{currectDirectory}/ServiciosApi/Servicio.Core/"))
-        //         currectDirectory = $"{currectDirectory}/ServiciosApi/Servicio.Core/";
+                if (!string.IsNullOrEmpty(currentLocalIPs))
+                {
+                    var arraycurrentLocalIPs = currentLocalIPs.Split(",").ToList();
+                    arraycurrentLocalIPs.ForEach(ip =>
+                    {
+                        var currentLocalIP = $"{uri.Scheme}{Uri.SchemeDelimiter}{ip}:{uri.Port}";
+                        Console.WriteLine($"*** Currente local IP web: {ip}");
 
-        //     Console.WriteLine(currectDirectory);
+                       urlOrigins.Add(currentLocalIP);
+                    });
+                }
+            }
 
-        //    // Creando objeto de configuracion para lectura de archivo json
-        //     IConfigurationRoot configuration = new ConfigurationBuilder()
-        //         .SetBasePath(currectDirectory)
-        //         .AddJsonFile("appsettings.json", optional:false, reloadOnChange: true)
-        //         .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
-        //         .AddEnvironmentVariables()
-        //         .Build();
-
-        //     return configuration;
-        // }
+            return urlOrigins;
+        }
     }
 }
 

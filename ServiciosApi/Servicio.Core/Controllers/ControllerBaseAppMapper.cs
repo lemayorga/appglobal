@@ -9,7 +9,7 @@ using Servicio.Datos.Repository;
 
 namespace Servicio.Core.Controllers
 {
-    public abstract class ControllerBaseeAppMapper<TEntity, TAdd, TUpdate, TGetAll, TGetOne> : ControllerBase  
+    public abstract class ControllerBaseAppMapper<TEntity, TAdd, TUpdate, TGetAll, TGetOne> : ControllerBase  
             where TEntity : class
             where TAdd : class
             where TUpdate : class
@@ -19,7 +19,7 @@ namespace Servicio.Core.Controllers
         protected  IBaseRepository<TEntity> repo;
         private readonly IMapper mapper;
         
-        public ControllerBaseeAppMapper(IBaseRepository<TEntity> repo,IMapper mapper)
+        public ControllerBaseAppMapper(IBaseRepository<TEntity> repo,IMapper mapper)
         {
             this.repo = repo;
             this.mapper = mapper;
@@ -42,7 +42,7 @@ namespace Servicio.Core.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public virtual async Task<IActionResult> GetFind(int id)
+        public virtual async Task<IActionResult> GetFind(object id)
         {
             TEntity resultEntity = await repo.FindAsync(id);
             if (resultEntity == null)
@@ -60,7 +60,7 @@ namespace Servicio.Core.Controllers
         {
             var resultEntity = CreateMapper<TAdd, TEntity>().Map<TAdd,TEntity>(record);
             var resultado = await repo.AddEntityAsync(resultEntity);
-            return Ok(resultado);
+            return Ok(resultEntity);
         }
 
         [HttpPut]
@@ -71,7 +71,7 @@ namespace Servicio.Core.Controllers
         {
             var resultEntity = CreateMapper<TUpdate, TEntity>().Map<TUpdate,TEntity>(record);
             var resultado =  await repo.UpdateEntityAsync(resultEntity);
-            return Ok(resultado);
+            return Ok(resultEntity);
         }
 
         [HttpDelete("{id}")]
@@ -83,7 +83,6 @@ namespace Servicio.Core.Controllers
             TEntity entityToDelete = await repo.FindAsync(id);
             if(entityToDelete != null)
             {
-                await repo.RemoveEntityAsync(entityToDelete);
                 var resultado = await repo.RemoveEntityAsync(entityToDelete);
                 if(!resultado)
                     return BadRequest();

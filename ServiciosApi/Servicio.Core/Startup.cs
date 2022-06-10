@@ -1,7 +1,6 @@
+using System.Collections.Specialized;
+using System.Text;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,8 +12,10 @@ using Servicio.Datos.Context;
 using Microsoft.EntityFrameworkCore;
 using Servicio.Datos.Repository;
 using Servicio.Datos.Shared;
-using System.Reflection;
 using Servicio.Core.Config;
+using Servicio.Logica;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Servicio.Core
 {
@@ -23,6 +24,7 @@ namespace Servicio.Core
         public Startup(IConfiguration configuration)
         {            
             Configuration = configuration;
+            Configuration = OptionsBuilder.configurationBuilder;  //ConfigConfiguration();
         }
 
         readonly string CorsPolicy = "_corsPolicy";
@@ -31,11 +33,17 @@ namespace Servicio.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            List<string> urlOrigins = ReadCurentsIps(Configuration["Origins"] );
+
+            Console.WriteLine($"*** IP permitidas: {String.Join(",",urlOrigins)}");
+            Console.WriteLine($"*** Url defecto: https://localhost:5001/home");
+            Console.WriteLine($"*** Url Swagger: https://localhost:5001/swagger/index.html");
+
             services.AddCors(o =>
             {
                 o.AddPolicy(name: CorsPolicy, builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000")
+                    builder.WithOrigins(urlOrigins.ToArray())
                                     .AllowAnyHeader()
                                     .AllowAnyMethod()
                                     .AllowCredentials()
@@ -72,6 +80,33 @@ namespace Servicio.Core
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private List<string> ReadCurentsIps(string configOrings)
+        {
+            
+            List<string> urlOrigins = (configOrings ?? "").Split(new char[]{',',';'}).ToList();
+            string currentLocalIPs = Utils.GetCurrentLocalIps();
+
+            if(!string.IsNullOrEmpty(currentLocalIPs) && urlOrigins.Count() > 0)
+            {
+                urlOrigins ??= new List<string>();
+                Uri uri = new Uri(urlOrigins[0]);
+
+                if (!string.IsNullOrEmpty(currentLocalIPs))
+                {
+                    var arraycurrentLocalIPs = currentLocalIPs.Split(",").ToList();
+                    arraycurrentLocalIPs.ForEach(ip =>
+                    {
+                        var currentLocalIP = $"{uri.Scheme}{Uri.SchemeDelimiter}{ip}:{uri.Port}";
+                        Console.WriteLine($"*** Currente local IP web: {ip}");
+
+                       urlOrigins.Add(currentLocalIP);
+                    });
+                }
+            }
+
+            return urlOrigins;
         }
     }
 }

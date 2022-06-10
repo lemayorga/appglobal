@@ -52,6 +52,16 @@ Nueva migración
 > dotnet ef database update --project Servicio.Datos/Servicio.Datos.csproj -s Servicio.Core -c ApplicationDbContext --verbose
 
 
+- ### Comando para ejecutar proyecto api:   
+> cd .\ServiciosApi\Servicio.Core\
+> dotnet run
+> dotnet run --launch-profile "Servicio.Core"
+> dotnet watch run
+
+Url defecto: https://localhost:5001/home
+Url Swagger: https://localhost:5001/swagger/index.html
+
+
 
 - ### Instalar entity framework 
 > dotnet tool install --global dotnet-ef

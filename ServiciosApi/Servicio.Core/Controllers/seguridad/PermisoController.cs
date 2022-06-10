@@ -7,7 +7,7 @@ namespace Servicio.Core.Controllers.seguridad
 {
    [ApiController]
    [Route("api/seguridad/[controller]")]
-   public class PermisoController : ControllerBaseeApp<Permisos>
+   public class PermisoController : ControllerBaseApp<Permisos>
    {
         public PermisoController(IBaseRepository<Permisos> repo) : base(repo)
         {

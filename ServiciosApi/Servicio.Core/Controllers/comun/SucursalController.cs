@@ -9,7 +9,7 @@ namespace Servicio.Core.Controllers.comun
 {
    [ApiController]
    [Route("api/comun/[controller]")]
-   public class SucursalController : ControllerBaseeApp<Sucursales>
+   public class SucursalController : ControllerBaseApp<Sucursales>
    {
         public SucursalController(IBaseRepository<Sucursales> repo) : base(repo)
         {

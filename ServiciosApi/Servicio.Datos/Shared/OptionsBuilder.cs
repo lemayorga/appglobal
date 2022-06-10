@@ -12,12 +12,18 @@ namespace Servicio.Datos.Shared
             {
                // Variable de entorno de ejecucion
                string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+               string currectDirectory = Directory.GetCurrentDirectory();
+               Console.WriteLine(currectDirectory);
 
-                var configurationBuilder = new ConfigurationBuilder();
+               if(Directory.Exists($"{currectDirectory}/ServiciosApi/Servicio.Core/"))
+                currectDirectory = $"{currectDirectory}/ServiciosApi/Servicio.Core/";
+
+               Console.WriteLine(currectDirectory);
+               var configurationBuilder = new ConfigurationBuilder();
                 // var path = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
                 // configurationBuilder.AddJsonFile(path, false);
                 configurationBuilder
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(currectDirectory)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true);
                 var root = configurationBuilder.Build();

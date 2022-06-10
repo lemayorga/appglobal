@@ -7,11 +7,11 @@ using Servicio.Datos.Repository;
 namespace Servicio.Core.Controllers
 {
     [ApiController]
-    public abstract class ControllerBaseeApp<T> : ControllerBase where T : class
+    public abstract class ControllerBaseApp<T> : ControllerBase where T : class
     {
         protected  IBaseRepository<T> repo;
 
-        public ControllerBaseeApp(IBaseRepository<T> repo)
+        public ControllerBaseApp(IBaseRepository<T> repo)
         {
             this.repo = repo;
         }
@@ -35,7 +35,6 @@ namespace Servicio.Core.Controllers
             T entityToDelete = await repo.FindAsync(id);
             if(entityToDelete != null)
             {
-                await repo.RemoveEntityAsync(entityToDelete);
                 var resultado = await repo.RemoveEntityAsync(entityToDelete);
                 if(!resultado)
                     return BadRequest();

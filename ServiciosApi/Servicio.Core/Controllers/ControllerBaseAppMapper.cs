@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Servicio.Datos.Repository;
 
 namespace Servicio.Core.Controllers
@@ -37,12 +35,11 @@ namespace Servicio.Core.Controllers
             return Ok(resultado);
         }  
 
-
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public virtual async Task<IActionResult> GetFind(object id)
+        public virtual async Task<IActionResult> Get(object id)
         {
             TEntity resultEntity = await repo.FindAsync(id);
             if (resultEntity == null)
@@ -51,6 +48,17 @@ namespace Servicio.Core.Controllers
             var resultado = CreateMapper<TEntity, TGetOne>().Map<TEntity,TGetOne>(resultEntity);
             return Ok(resultado);
         }
+
+        [HttpGet()]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public virtual async Task<IActionResult> Get(int skip, int take) 
+        {
+            var resultEntity = await repo.GetAsync(skip, take);
+            var resultado =  CreateMapper<TEntity, TGetAll>().Map<List<TGetAll>>(resultEntity);
+            return Ok(resultado);
+        }  
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -67,7 +75,7 @@ namespace Servicio.Core.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public virtual async Task<IActionResult> PutUpdate([FromBody] TUpdate record)
+        public virtual async Task<IActionResult> Put([FromBody] TUpdate record)
         {
             var resultEntity = CreateMapper<TUpdate, TEntity>().Map<TUpdate,TEntity>(record);
             var resultado =  await repo.UpdateEntityAsync(resultEntity);
@@ -91,7 +99,6 @@ namespace Servicio.Core.Controllers
             }
             return Ok(false);    
         }
-
 
 
         private IMapper CreateMapper<TEnt, TDto>() 

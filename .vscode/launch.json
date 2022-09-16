@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/ServiciosApi/Servicio.Core//bin/Debug/net5.0/Servicio.Core.dll",
+            "program": "${workspaceFolder}/ServiciosApi/Servicio.Core//bin/Debug/net6.0/Servicio.Core.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,

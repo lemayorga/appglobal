@@ -49,7 +49,7 @@ namespace Servicio.Core.Controllers
             return Ok(resultado);
         }
 
-        [HttpGet()]
+        [HttpGet("Limit/{skip}/{take}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

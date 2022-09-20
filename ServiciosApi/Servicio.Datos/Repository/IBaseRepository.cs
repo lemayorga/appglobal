@@ -8,6 +8,34 @@ namespace Servicio.Datos.Repository
 {
     public interface IBaseRepository <TEntity> where TEntity : class
     {
+        /// <summary>
+        /// Iniciar transaccion del context
+        /// </summary>
+        /// <returns></returns>
+        void BeginTransaction();
+
+        /// <summary>
+        /// Aplicar transaccion del context
+        /// </summary>
+        /// <returns></returns>
+        void CommitTransaction();
+
+        /// <summary>
+        /// Aplicar rollback a la transaccion del context
+        /// </summary>
+        /// <returns></returns>
+        void RollbackTransaction();
+
+        /// <summary>
+        /// Destruir transaccion del context
+        /// </summary>
+        /// <returns></returns>
+        void DisposeTransaction();
+
+        /// <summary>
+        /// Consultar datos a la base de datos sin cargar en memmoria
+        /// </summary>
+        /// <returns></returns>
         IQueryable<TEntity> GetQueryList(Expression<Func<TEntity, bool>> filter = null,
                                                 Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
                                                 string includeProperties = "");                                              
@@ -153,7 +181,18 @@ namespace Servicio.Datos.Repository
         /// <param name="predicate">Criterio de búsqueda</param>
         /// <returns>Primer elemento de la secuencia que cumple las condiciones especificadas</returns>
         Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate = null);
-
+       
+        /// <summary>
+        /// Obtiene un listado de elementos
+        /// </summary>
+        /// <param name="skip">Condicionar para iniciar a tomar los valores</param>
+        /// <param name="take">Condicionar para tomar los valores</param>
+        /// <param name="where">Condición de filtrado</param>
+        /// <param name="orderBy">Criterio de ordenación</param>
+        /// <param name="includes">Criterio de inclusión de datos relacionados</param>
+        /// <returns>Listado de elementos</returns>
+        List<TEntity> Get(int skip, int take,Expression<Func<TEntity, bool>> where = null, Action<IQueryable<TEntity>> orderBy = null, Action<IQueryable<TEntity>> includes = null);
+       
         /// <summary>
         /// Obtiene un listado de elementos
         /// </summary>
@@ -162,7 +201,18 @@ namespace Servicio.Datos.Repository
         /// <param name="includes">Criterio de inclusión de datos relacionados</param>
         /// <returns>Listado de elementos</returns>
         List<TEntity> Get(Expression<Func<TEntity, bool>> where = null, Action<IQueryable<TEntity>> orderBy = null, Action<IQueryable<TEntity>> includes = null);
-
+       
+        /// <summary>
+        /// Obtiene un listado de elementos de forma asíncrona
+        /// </summary>
+        /// <param name="skip">Condicionar para iniciar a tomar los valores</param>
+        /// <param name="take">Condicionar para tomar los valores</param>
+        /// <param name="where">Condición de filtrado</param>
+        /// <param name="orderBy">Criterio de ordenación</param>
+        /// <param name="includes">Criterio de inclusión de datos relacionados</param>
+        /// <returns>Listado de elementos</returns>
+        Task<List<TEntity>> GetAsync(int skip, int take, Expression<Func<TEntity, bool>> where = null, Action<IQueryable<TEntity>> orderBy = null, Action<IQueryable<TEntity>> includes = null);
+       
         /// <summary>
         /// Obtiene un listado de elementos de forma asíncrona
         /// </summary>
@@ -171,6 +221,7 @@ namespace Servicio.Datos.Repository
         /// <param name="includes">Criterio de inclusión de datos relacionados</param>
         /// <returns>Listado de elementos</returns>
         Task<List<TEntity>> GetAsync(Expression<Func<TEntity, bool>> where = null, Action<IQueryable<TEntity>> orderBy = null, Action<IQueryable<TEntity>> includes = null);
+      
         Task<List<TResult>> GetCustomObjectAsync<TResult>(Expression<Func<TEntity, TResult>> select = null, Expression<Func<TEntity, bool>> where = null, Action<IQueryable<TEntity>> orderBy = null, Action<IQueryable<TEntity>> includes = null);
 
         /// <summary>
@@ -308,5 +359,38 @@ namespace Servicio.Datos.Repository
         /// <returns>Indicador de éxito o fallo de la operación</returns>
         Task<bool> UpdateEntityAsync(TEntity element);
 
+        /// <summary>
+        /// Obtiene  el minimo de un elemento
+        /// </summary>
+        /// <param name="select">Criterio de campo a ordernar</param>
+        /// <param name="where">Condición de filtrado</param>
+        /// <returns>Listado de elementos</returns>
+        TResult Min<TResult>(Expression<Func<TEntity, TResult>> select, Expression<Func<TEntity, bool>> where = null);
+
+        /// <summary>
+        /// Obtiene  el minimo de un elemento
+        /// </summary>
+        /// <param name="select">Criterio de campo a ordernar</param>
+        /// <param name="where">Condición de filtrado</param>
+        /// <returns>Listado de elementos</returns>
+        Task<TResult> MinAsync<TResult>(Expression<Func<TEntity, TResult>> select, Expression<Func<TEntity, bool>> where = null);
+              
+        /// <summary>
+        /// Obtiene  el maximo de un elemento
+        /// </summary>
+        /// <param name="select">Criterio de campo a ordernar</param>
+        /// <param name="where">Condición de filtrado</param>
+        /// <returns>Listado de elementos</returns>
+        TResult Max<TResult>(Expression<Func<TEntity, TResult>> select, Expression<Func<TEntity, bool>> where = null);
+
+        /// <summary>
+        /// Obtiene  el maximo de un elemento
+        /// </summary>
+        /// <param name="select">Criterio de campo a ordernar</param>
+        /// <param name="where">Condición de filtrado</param>
+        /// <returns>Listado de elementos</returns>
+        Task<TResult> MaxAsynx<TResult>(Expression<Func<TEntity, TResult>> select, Expression<Func<TEntity, bool>> where = null);
+
+        IEnumerable<TEntity> AllIncluding(params Expression<Func<TEntity, object>>[] includeProperties);
     }
 }

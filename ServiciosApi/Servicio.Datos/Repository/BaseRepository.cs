@@ -44,7 +44,7 @@ namespace Servicio.Datos.Repository
             _db.Dispose();
         }
 
-         public void BeginTransaction()
+        public void BeginTransaction()
         {
             _db.Database.BeginTransaction();
         }
@@ -209,6 +209,24 @@ namespace Servicio.Datos.Repository
             return await _dbSet.FirstOrDefaultAsync();
         }
 
+        public virtual List<TEntity> Get(int skip, int take,Expression<Func<TEntity, bool>> where = null, Action<IQueryable<TEntity>> orderBy = null, Action<IQueryable<TEntity>> includes = null)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (includes != null)
+            {
+                includes.Invoke(query);
+            }
+            if (where != null)
+            {
+                query = query.Where(where);
+            }
+            if (orderBy != null)
+            {
+                orderBy.Invoke(query);
+            }
+            return query.Skip(skip).Take(take).ToList();
+        }
+
         public virtual List<TEntity> Get(Expression<Func<TEntity, bool>> where = null, Action<IQueryable<TEntity>> orderBy = null, Action<IQueryable<TEntity>> includes = null)
         {
             IQueryable<TEntity> query = _dbSet;
@@ -226,7 +244,23 @@ namespace Servicio.Datos.Repository
             }
             return query.ToList();
         }
-
+        public virtual async Task<List<TEntity>> GetAsync(int skip, int take, Expression<Func<TEntity, bool>> where = null, Action<IQueryable<TEntity>> orderBy = null, Action<IQueryable<TEntity>> includes = null)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (includes != null)
+            {
+                includes.Invoke(query);
+            }
+            if (where != null)
+            {
+                query = query.Where(where);
+            }
+            if (orderBy != null)
+            {
+                orderBy.Invoke(query);
+            }
+            return await query.Skip(skip).Take(take).ToListAsync();
+        }
         public virtual async Task<List<TEntity>> GetAsync(Expression<Func<TEntity, bool>> where = null, Action<IQueryable<TEntity>> orderBy = null, Action<IQueryable<TEntity>> includes = null)
         {
             IQueryable<TEntity> query = _dbSet;
@@ -457,6 +491,85 @@ namespace Servicio.Datos.Repository
             _dbSet.Update(element);
             return await _db.SaveChangesAsync() > 0;
         }
- 
+        public virtual TResult Min<TResult>(Expression<Func<TEntity, TResult>> select, Expression<Func<TEntity, bool>> where = null)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (where != null)
+                query = query.Where(where);
+
+
+            Console.WriteLine(query.ToQueryString());
+            return query.Min(select);
+        }
+
+        public virtual async Task<TResult> MinAsync<TResult>(Expression<Func<TEntity, TResult>> select, Expression<Func<TEntity, bool>> where = null)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (where != null)
+                query = query.Where(where);
+            
+            Console.WriteLine(query.ToQueryString());
+            return await query.MinAsync(select);
+        }
+    
+        public virtual TResult Max<TResult>(Expression<Func<TEntity, TResult>> select, Expression<Func<TEntity, bool>> where = null)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (where != null)
+                query = query.Where(where);
+
+            Console.WriteLine(query.ToQueryString());
+            return query.Max(select);
+        }
+
+        public virtual async Task<TResult> MaxAsynx<TResult>(Expression<Func<TEntity, TResult>> select,Expression<Func<TEntity, bool>> where = null)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (where != null)
+                query = query.Where(where);
+
+            Console.WriteLine(query.ToString());
+            return (query != null && query.Any()) ? await query.MaxAsync(select) : default;
+        }
+
+        public virtual IEnumerable<TEntity> AllIncluding(params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+            return query.AsEnumerable();
+        }
+
+        private async Task<int> SaveChangesAsync()
+        {
+            try
+            {
+               return  await _db.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                string error = "";
+                foreach (var entityEntry in _db.ChangeTracker.Entries().Where(et => et.State != EntityState.Unchanged))
+                {
+                    foreach (var entry in entityEntry.CurrentValues.Properties)
+                    {
+                        var prop = entityEntry.Property(entry.Name).Metadata;
+                        var value = entry.PropertyInfo?.GetValue(entityEntry.Entity);
+                        var valueLength = value?.ToString()?.Length;
+                        var typemapping = prop.GetTypeMapping();
+                        var typeSize = ((Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping)typemapping).Size;
+                        if (typeSize.HasValue && valueLength > typeSize.Value)
+                        {
+                            error += $"Truncation will occur: {entityEntry.Metadata.GetTableName()}.{prop.GetColumnBaseName()} {prop.GetColumnType()} :: {entry.Name}({valueLength}) = {value} \n";
+                            Console.WriteLine(error);
+                        }
+                    }
+                }
+
+                throw ex;
+            }
+        }
     }
 }

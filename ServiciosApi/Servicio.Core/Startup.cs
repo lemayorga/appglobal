@@ -16,6 +16,7 @@ using Servicio.Core.Config;
 using Servicio.Logica;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.Certificate;
 
 namespace Servicio.Core
 {
@@ -33,6 +34,9 @@ namespace Servicio.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+                services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
+                .AddCertificate();
+
             List<string> urlOrigins = ReadCurentsIps(Configuration["Origins"] );
 
             Console.WriteLine($"*** IP permitidas: {String.Join(",",urlOrigins)}");
@@ -63,6 +67,8 @@ namespace Servicio.Core
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

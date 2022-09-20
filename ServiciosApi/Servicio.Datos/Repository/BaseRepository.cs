@@ -532,6 +532,16 @@ namespace Servicio.Datos.Repository
             return (query != null && query.Any()) ? await query.MaxAsync(select) : default;
         }
 
+        public virtual IEnumerable<TEntity> AllIncluding(params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+            return query.AsEnumerable();
+        }
+
         private async Task<int> SaveChangesAsync()
         {
             try

@@ -390,5 +390,7 @@ namespace Servicio.Datos.Repository
         /// <param name="where">Condición de filtrado</param>
         /// <returns>Listado de elementos</returns>
         Task<TResult> MaxAsynx<TResult>(Expression<Func<TEntity, TResult>> select, Expression<Func<TEntity, bool>> where = null);
+
+        IEnumerable<TEntity> AllIncluding(params Expression<Func<TEntity, object>>[] includeProperties);
     }
 }

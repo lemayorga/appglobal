@@ -1,3 +1,5 @@
+
+[![My Skills](https://skillicons.dev/icons?i=dotnet,docker,postgres&theme=light)](https://skillicons.dev)
 ## API Base
 
 Aplicación APi con net5 ,permitiendo conexion a MSSQL o Postgresql
